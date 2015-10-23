@@ -14,6 +14,10 @@
 
 @property (strong, nonatomic) NSMutableArray *itemArray;
 
+@property (copy, nonatomic) ClickedIndexBlock clickedIndexBlock;
+
+@property (copy, nonatomic) TagListViewUpdateFrameBlock updateFrameBlock;
+
 @end
 
 @implementation TagListView
@@ -33,6 +37,11 @@
 - (void)clickedIndex:(ClickedIndexBlock)block
 {
     self.clickedIndexBlock = block;
+}
+
+- (void)didUpdatedTagListViewFrame:(TagListViewUpdateFrameBlock)block
+{
+    self.updateFrameBlock = block;
 }
 
 - (void)configInitValueForProperty
@@ -98,6 +107,12 @@
     }
     UIButton *lastObj = [self.itemArray lastObject];
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(lastObj.frame) + self.contentInsets.bottom);
+    if (self.updateFrameBlock) {
+         self.updateFrameBlock(self.frame);
+    }
+    if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
+        [self.delegate tagListView:self didUpdateFrame:self.frame];
+    }
 }
 
 #pragma mark - frame helper

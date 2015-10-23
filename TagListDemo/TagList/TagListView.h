@@ -20,7 +20,7 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 /**
  *  可以实现代理，也可以不实现，有相同的功能的block方法代替。
  */
-@property (nonatomic, weak) id<TagListViewDelegate>delegate;
+@property (weak, nonatomic) id<TagListViewDelegate>delegate;
 
 /**
  *  block传递点中的位置
@@ -39,52 +39,52 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 /**
  *  tag的数据源
  */
-@property (nonatomic, copy) NSArray *tagsArr;
+@property (copy, nonatomic) NSArray *tagsArr;
 
 /**
  *  tag的有效区域。默认（0，0，0，0）
  */
-@property (nonatomic, assign) UIEdgeInsets contentInsets;
+@property (assign, nonatomic) UIEdgeInsets contentInsets;
 
 /**
  *  同一行两个相临tag的间距。默认8
  */
-@property (nonatomic, assign) CGFloat itemSpacing;
+@property (assign, nonatomic) CGFloat itemSpacing;
 
 /**
  *  两行tag之间的间距。默认8
  */
-@property (nonatomic, assign) CGFloat lineSpacing;
+@property (assign, nonatomic) CGFloat lineSpacing;
 
 /**
  *  tag标签的高度,一般情况下不设置。
  */
-@property (nonatomic, assign) CGFloat itemHeight;
+@property (assign, nonatomic) CGFloat itemHeight;
 
 /**
  *  tag标签的字体，默认系统字体13号
  */
-@property (nonatomic, strong) UIFont *font;
+@property (strong, nonatomic) UIFont *font;
 
 /**
  *  是否自动计算tag的高度。默认YES,当设置为NO时，需要设置itemHeight属性
  */
-@property (nonatomic, assign) BOOL autoItemHeightWithFontSize;
+@property (assign, nonatomic) BOOL autoItemHeightWithFontSize;
 
 /**
  *  标签的背景颜色，默认白色
  */
-@property (nonatomic, strong) UIColor *tagBackgroundColor;
+@property (strong, nonatomic) UIColor *tagBackgroundColor;
 
 /**
  *  标签文字的颜色，默认黑色
  */
-@property (nonatomic, strong) UIColor *tagTextColor;
+@property (strong, nonatomic) UIColor *tagTextColor;
 
 /**
  *  标签边框的颜色,默认lightGrayColor
  */
-@property (nonatomic, strong) UIColor *tagBoarderColor;
+@property (strong, nonatomic) UIColor *tagBoarderColor;
 
 @end
 

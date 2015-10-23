@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) NSMutableArray *itemArray;
 
-@property (nonatomic, copy) ClickedIndexBlock clickedIndexBlock;
+@property (copy, nonatomic) ClickedIndexBlock clickedIndexBlock;
 
 @property (copy, nonatomic) TagListViewUpdateFrameBlock updateFrameBlock;
 
@@ -22,11 +22,12 @@
 
 @implementation TagListView
 
-- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray<NSString *> *)tagsArr
+- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr
 {
     if (self = [super initWithFrame:frame]) {
         [self configInitValueForProperty];
         self.tagsArr = tagsArr;
+        [self checkObjectTypeNSString];
         [self makeItems];
         [self resetItemsFrame];
         
@@ -42,6 +43,13 @@
 - (void)didUpdatedTagListViewFrame:(TagListViewUpdateFrameBlock)block
 {
     self.updateFrameBlock = block;
+}
+
+- (void)checkObjectTypeNSString
+{
+    for (id obj in self.tagsArr) {
+        NSAssert([obj isKindOfClass:[NSString class]], @"tag标签中的数据只能是字符串");
+    }
 }
 
 - (void)configInitValueForProperty
