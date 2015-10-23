@@ -15,7 +15,7 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 
 @interface TagListView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray<NSString*>*)tagsArr;
+- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr;
 
 /**
  *  可以实现代理，也可以不实现，有相同的功能的block方法代替。
@@ -39,7 +39,7 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 /**
  *  tag的数据源
  */
-@property (nonatomic, copy) NSArray<NSString*>*tagsArr;
+@property (nonatomic, copy) NSArray *tagsArr;
 
 /**
  *  tag的有效区域。默认（0，0，0，0）
