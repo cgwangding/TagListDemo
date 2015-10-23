@@ -107,7 +107,9 @@
     }
     UIButton *lastObj = [self.itemArray lastObject];
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(lastObj.frame) + self.contentInsets.bottom);
-    self.updateFrameBlock(self.frame);
+    if (self.updateFrameBlock) {
+         self.updateFrameBlock(self.frame);
+    }
     if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
         [self.delegate tagListView:self didUpdateFrame:self.frame];
     }
