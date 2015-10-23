@@ -33,6 +33,10 @@
     [tagView clickedIndex:^(NSInteger index) {
         NSLog(@"%lu",index);
     }];
+    //该方法可根据需要自行使用
+    [tagView didUpdatedTagListViewFrame:^(CGRect frame) {
+        NSLog(@"%@",NSStringFromCGRect(frame));
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

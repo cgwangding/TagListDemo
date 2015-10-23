@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^ClickedIndexBlock)(NSInteger index);
-typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 
 @protocol TagListViewDelegate;
 
@@ -17,10 +16,9 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 
 - (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray<NSString*>*)tagsArr;
 
-/**
- *  可以实现代理，也可以不实现，有相同的功能的block方法代替。
- */
 @property (nonatomic, weak) id<TagListViewDelegate>delegate;
+
+@property (nonatomic, copy) ClickedIndexBlock clickedIndexBlock;
 
 /**
  *  block传递点中的位置
@@ -28,13 +26,6 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
  *  @param block 点中的位置的block
  */
 - (void)clickedIndex:(ClickedIndexBlock)block;
-
-/**
- *  在自动布局计算完成后，会自动调整TagListView的height。该方法可根据需要自行使用。
- *
- *  @param block frame更新的block
- */
-- (void)didUpdatedTagListViewFrame:(TagListViewUpdateFrameBlock)block;
 
 /**
  *  tag的数据源
@@ -91,20 +82,7 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 @protocol TagListViewDelegate <NSObject>
 
 @optional
-/**
- *  点中tag后的代理，有block方法
- *
- *  @param tagListView ====
- *  @param index       点中的位置
- */
-- (void)tagListView:(TagListView*)tagListView didClickedAtIndex:(NSInteger)index;
 
-/**
- *  在自动布局计算完成后，会自动调整TagListView的height。该代理方法可根据需要自行使用。
- *
- *  @param tagListView =====
- *  @param frame       更新后的frame
- */
-- (void)tagListView:(TagListView *)tagListView didUpdateFrame:(CGRect)frame;
+- (void)tagListView:(TagListView*)tagListView didClickedAtIndex:(NSInteger)index;
 
 @end
